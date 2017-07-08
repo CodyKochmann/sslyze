@@ -1,24 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from __future__ import print_function
+
+from __future__ import absolute_import, unicode_literals, print_function
 
 import os
 import sys
 if not hasattr(sys, "frozen"):
     sys.path.insert(1, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'lib'))
 
+from multiprocessing import freeze_support
+from sslyze import __version__
+from sslyze.cli import FailedServerScan, CompletedServerScan
+from sslyze.cli.command_line_parser import CommandLineParsingError, CommandLineParser
+from sslyze.cli.output_hub import OutputHub
 from sslyze.concurrent_scanner import ConcurrentScanner
 from sslyze.plugins.plugins_repository import PluginsRepository
-from sslyze.cli.output_hub import OutputHub
-from sslyze.cli import FailedServerScan, CompletedServerScan
-from sslyze import __version__
-from sslyze.cli.command_line_parser import CommandLineParsingError, CommandLineParser
-import signal
-from multiprocessing import freeze_support
-from time import time
 from sslyze.server_connectivity import ServersConnectivityTester
+from time import time
+import signal
 
 
 global_scanner = None
