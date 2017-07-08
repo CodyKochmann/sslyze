@@ -2,10 +2,10 @@
 from sslyze import (
     __author__,
     __email__,
-    __license__
+    __license__,
     __version__,
     PROJECT_DESC,
-    PROJECT_URL,
+    PROJECT_URL
 )
 
 SSLYZE_SETUP = {
