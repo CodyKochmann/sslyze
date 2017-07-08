@@ -1,41 +1,63 @@
 #!/usr/bin/env python
-from sslyze import PROJECT_URL, PROJECT_DESC, __author__, __email__, __version__, __license__
-
+from sslyze import (
+    __author__,
+    __email__,
+    __license__
+    __version__,
+    PROJECT_DESC,
+    PROJECT_URL,
+)
 
 SSLYZE_SETUP = {
-    'name': 'SSLyze',
-    'version': __version__,
-    'description': PROJECT_DESC,
     'author': __author__,
     'author_email': __email__,
-    'license': __license__,
-    'url': PROJECT_URL,
-    'entry_points': {'console_scripts': ['sslyze = sslyze.__main__:main']},
-    'packages': ['sslyze', 'sslyze.cli', 'sslyze.utils', 'sslyze.plugins', 'sslyze.plugins.utils',
-                 'sslyze.plugins.utils.trust_store'],
-    'package_data': {'sslyze.plugins.utils.trust_store': ['pem_files/*.pem']},
-    'install_requires': ['nassl>=0.16.0,<0.17.0', 'cryptography'],
-    'extras_require': {':python_version < "3.4"': ['enum34'],
-                       ':python_version < "3.5"': ['typing']},
     'classifiers': [
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
-        'Natural Language :: French',
         'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
-        'Programming Language :: Python',
+        'Natural Language :: French',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
-        'Topic :: System :: Networking',
-        'Topic :: Security'
+        'Programming Language :: Python',
+        'Topic :: Security',
+        'Topic :: System :: Networking'
     ],
+    'description': PROJECT_DESC,
+    'entry_points': {
+        'console_scripts': ['sslyze = sslyze.__main__:main']
+    },
+    'extras_require': {
+        ':python_version < "3.4"': ['enum34'],
+        ':python_version < "3.5"': ['typing']
+    },
+    'install_requires': [
+        'cryptography',
+        'nassl>=0.16.0,<0.17.0'
+    ],
+    'license': __license__,
+    'name': 'SSLyze',
+    'package_data': {
+        'sslyze.plugins.utils.trust_store': ['pem_files/*.pem']
+    },
+    'packages': [
+        'sslyze',
+        'sslyze.cli',
+        'sslyze.plugins',
+        'sslyze.plugins.utils',
+        'sslyze.plugins.utils.trust_store',
+        'sslyze.utils'
+    ],
+    'url': PROJECT_URL,
+    'version': __version__,
 }
 
 if __name__ == "__main__":
-    # Importing setuptools here because setup_py2exe also imports SSLYZE_SETUP but needs to use distutils
+    # Importing setuptools here because setup_py2exe also
+    # imports SSLYZE_SETUP but needs to use distutils
     from setuptools import setup
 
     setup(**SSLYZE_SETUP)
