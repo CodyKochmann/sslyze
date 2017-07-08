@@ -56,6 +56,16 @@ SSLYZE_SETUP = {
 }
 
 if __name__ == "__main__":
+    # test that what you need from requirements.txt is satisfied
+    try:
+        import tls_parser
+    except ImportError:
+        from os.path import dirname, realpath
+        exit('\nError: missing library packages. please run this first:\n\n\
+    pip install -r {file_path:}/requirements.txt --target {file_path:}/lib\n'.format(
+            file_path=dirname(realpath(__file__))
+        ))
+
     # Importing setuptools here because setup_py2exe also
     # imports SSLYZE_SETUP but needs to use distutils
     from setuptools import setup
