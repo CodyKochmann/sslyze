@@ -111,18 +111,23 @@ def main():
     # We cannot use the server_info object directly as its address will change due to multiprocessing
     RESULT_KEY_FORMAT = '{hostname}:{ip_address}:{port}'
     for server_info in online_servers_list:
-        result_dict[RESULT_KEY_FORMAT.format(hostname=server_info.hostname, ip_address=server_info.ip_address,
-                                             port=server_info.port)] = []
+        result_dict[RESULT_KEY_FORMAT.format(
+            hostname=server_info.hostname,
+            ip_address=server_info.ip_address,
+            port=server_info.port)] = []
 
     # Process the results as they come
     for plugin_result in global_scanner.get_results():
         server_info = plugin_result.server_info
-        result_dict[RESULT_KEY_FORMAT.format(hostname=server_info.hostname, ip_address=server_info.ip_address,
-                                             port=server_info.port)].append(plugin_result)
+        result_dict[RESULT_KEY_FORMAT.format(
+            hostname=server_info.hostname,
+            ip_address=server_info.ip_address,
+            port=server_info.port)].append(plugin_result)
 
-        plugin_result_list = result_dict[RESULT_KEY_FORMAT.format(hostname=server_info.hostname,
-                                                                  ip_address=server_info.ip_address,
-                                                                  port=server_info.port)]
+        plugin_result_list = result_dict[RESULT_KEY_FORMAT.format(
+            hostname=server_info.hostname,
+            ip_address=server_info.ip_address,
+            port=server_info.port)]
 
         if len(plugin_result_list) == task_num:
             # Done with this server; send the result to the output hub
