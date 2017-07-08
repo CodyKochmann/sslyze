@@ -62,7 +62,7 @@ if __name__ == "__main__":
     except ImportError:
         from os.path import dirname, realpath
         exit('\nError: missing library packages. please run this first:\n\n\
-    pip install -r {file_path:}/requirements.txt --target {file_path:}/lib\n'.format(
+    pip install -r {file_path:}/requirements.txt --user\n'.format(
             file_path=dirname(realpath(__file__))
         ))
 
